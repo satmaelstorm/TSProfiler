@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 22.04.2017
- * Time: 13:59
- */
 
 namespace satmaelstorm\TSProfiler;
-
 
 class ProfilerSingletone
 {

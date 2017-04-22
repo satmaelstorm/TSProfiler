@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace satmaelstorm\TSProfiler\TSProfilerShutdown;
 
-
 use satmaelstorm\TSProfiler\Tracker;
 
 class CSVSaver implements ShutdownInterface
