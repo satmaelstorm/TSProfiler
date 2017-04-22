@@ -1,0 +1,26 @@
+{
+  "name": "satmaelstorm/TSProfiler",
+  "description": "Tiny and simple profiler",
+  "authors": [
+    {
+      "name": "Vladislav Sidorin",
+      "email": "satmaelstorm@gmail.com"
+    }
+  ],
+  "keywords": [
+    "Profiler"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "satmaelstorm\\TSProfiler\\": "src/",
+      "satmaelstorm\\TSProfiler\\TSProfilerShutdown\\": "src/TSProfilerShutdown"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.1.*"
+  }
+}
