@@ -11,17 +11,18 @@ namespace satmaelstorm\TSProfiler;
 
 class ProfilerSingletone
 {
+    /** @var Profiler|null */
     private static $instance = null;
     
-    public static function forceDisable()
+    /**
+     * @param bool $createWithForceDisable
+     * @return Profiler
+     */
+    public static function getInstance(bool $createWithForceDisable = false): Profiler
     {
-        if (!is_null(self::$instance)){
-            
+        if (is_null(self::$instance)) {
+            self::$instance = new Profiler($createWithForceDisable);
         }
-    }
-    
-    public static function getInstance()
-    {
-        
+        return self::$instance;
     }
 }

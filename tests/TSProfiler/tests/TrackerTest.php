@@ -7,7 +7,7 @@ class TrackerTest extends \PHPUnit_Framework_TestCase
 {
     public function testStartJob()
     {
-        $tr = new Tracker();
+        $tr = new Tracker("test");
         $r1 = $tr->startJob('job1');
         $r2 = $tr->startJob('job2');
         $r3 = $tr->startJob('job1');
@@ -18,7 +18,7 @@ class TrackerTest extends \PHPUnit_Framework_TestCase
     
     public function testStopJob()
     {
-        $tr = new Tracker();
+        $tr = new Tracker("test");
         $r1 = $tr->startJob('job1');
         $r2 = $tr->startJob('job2');
         $r3 = $tr->startJob('job1');

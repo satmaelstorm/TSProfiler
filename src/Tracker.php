@@ -13,16 +13,20 @@ class Tracker
     private $jobs = [];
     /** @var ShutdownInterface|null */
     private $saver = null;
+    /** @var string */
+    private $name;
     
     /**
      * Tracker constructor.
+     * @param string                 $name
      * @param ShutdownInterface|null $saver
      * @param bool                   $enable
      */
-    public function __construct(ShutdownInterface $saver = null, bool $enable = true)
+    public function __construct(string $name, ShutdownInterface $saver = null, bool $enable = true)
     {
         $this->saver = $saver;
         $this->enable = $enable;
+        $this->name = $name;
     }
     
     /**
@@ -51,7 +55,7 @@ class Tracker
      * @param int|null $runId
      * @return float
      */
-    public function stopJob(string $name, int $runId = null): float 
+    public function stopJob(string $name, int $runId = null): float
     {
         $t = microtime(true);
         if (!$this->enable) {
@@ -66,7 +70,7 @@ class Tracker
         if (!isset($this->jobs[$name]['times'][$runId])) {
             return -1.0;
         }
-        if (!empty($this->jobs[$name]['times'][$runId]['e'])){
+        if (!empty($this->jobs[$name]['times'][$runId]['e'])) {
             return -1.0;
         }
         $this->jobs[$name]['times'][$runId]['e'] = $t;
@@ -87,6 +91,14 @@ class Tracker
             'times' => [],
             'comment' => $comment
         ];
+    }
+    
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
     }
     
     /**
