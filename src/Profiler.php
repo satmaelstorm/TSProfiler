@@ -12,9 +12,9 @@ class Profiler
     /** @var bool */
     private $forceDisable;
     
-    public function __construct(bool $forceDisable = false)
+    public function __construct(bool $noForceDisable = true)
     {
-        $this->forceDisable = $forceDisable;
+        $this->forceDisable = !$noForceDisable;
         register_shutdown_function(function () {
             foreach ($this->trackers as $tracker) {
                 $tracker->save();
