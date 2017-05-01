@@ -147,7 +147,7 @@ class Tracker
     
     /**
      * Save tracer information
-     * Shoud be use by register_shutdown_function ONLY!
+     * Should be use by register_shutdown_function ONLY!
      */
     public function save()
     {

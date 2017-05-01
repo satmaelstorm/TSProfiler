@@ -8,13 +8,13 @@ class ProfilerSingletone
     private static $instance = null;
     
     /**
-     * @param bool $createWithForceDisable
+     * @param bool $createWithNoForceDisable
      * @return Profiler
      */
-    public static function getInstance(bool $createWithForceDisable = false): Profiler
+    public static function getInstance(bool $createWithNoForceDisable = true): Profiler
     {
         if (is_null(self::$instance)) {
-            self::$instance = new Profiler($createWithForceDisable);
+            self::$instance = new Profiler($createWithNoForceDisable);
         }
         return self::$instance;
     }
