@@ -42,7 +42,7 @@ class Tracker
         if (!isset($this->jobs[$name])) {
             $this->jobs[$name] = $this->getNewJobArray($comment);
         }
-        $runId = $this->jobs[$name]['count'];
+        $this->jobs[$name]['last_run'] = $runId = $this->jobs[$name]['count'];
         ++$this->jobs[$name]['count'];
         $this->jobs[$name]['times'][$runId] = ['s' => 0, 'e' => 0, 'i' => 0];
         //As close as possible to the end of the function
@@ -64,14 +64,17 @@ class Tracker
         if (!isset($this->jobs[$name])) {
             return -1.0;
         }
-        if (is_null($runId)) {
-            $runId = $this->jobs[$name]['count'] - 1;
+        if (null === $runId) {
+            $runId = $this->jobs[$name]['last_run'];
         }
         if (!isset($this->jobs[$name]['times'][$runId])) {
             return -1.0;
         }
         if (!empty($this->jobs[$name]['times'][$runId]['e'])) {
             return -1.0;
+        }
+        if ($runId == $this->jobs[$name]['last_run']) {
+            --$this->jobs[$name]['last_run'];
         }
         $this->jobs[$name]['times'][$runId]['e'] = $t;
         $this->jobs[$name]['times'][$runId]['i'] = $this->jobs[$name]['times'][$runId]['e']
@@ -87,6 +90,7 @@ class Tracker
     private function getNewJobArray(string $comment): array
     {
         return [
+            'last_run' => 0,
             'count' => 0,
             'times' => [],
             'comment' => $comment
